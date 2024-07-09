@@ -83,7 +83,7 @@ const addCustomer = async () => {
     await newOrder.save();
     await newCust.save();
 
-    console.log("New Data Added");
+    console.log("New Data Added successfully");
 }
 addCustomer();
 
