@@ -85,9 +85,14 @@ const addCustomer = async () => {
 
     console.log("New Data Added successfully");
 }
-addCustomer();
+// addCustomer();
 
+const delCust = async () => {
+    let data = await Customer.findByIdAndDelete('668d2b65444d2783bcf539e5');
+    console.log(data);
+};
 
+delCust();
 
 
 
