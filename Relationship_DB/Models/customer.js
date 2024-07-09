@@ -25,11 +25,15 @@ const customerSchema = new Schema({
     ],
 });
 // moongse schema must be written before creating models
+/*
 customerSchema.pre("findOneAndDelete", async () => {
     console.log("Pre Middleware");
-});
-customerSchema.post("findOneAndDelete", async () => {
-    console.log("Post Middleware");
+}); */
+customerSchema.post("findOneAndDelete", async (customer) => {
+    if(customer.orders.length){
+      let result =  await Order.deleteMany({_id: {$in: customer.orders}});
+      console.log(result);
+    }
 });
 
 
@@ -96,7 +100,7 @@ const addCustomer = async () => {
 // addCustomer();
 
 const delCust = async () => {
-    let data = await Customer.findOneAndDelete({ _id: '668d42b7cb64d795fe422cd0' });
+    let data = await Customer.findByIdAndDelete("668d4d37816dbd5d5c84bff2");
     console.log(data);
 };
 
