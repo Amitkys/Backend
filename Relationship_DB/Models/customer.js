@@ -24,6 +24,13 @@ const customerSchema = new Schema({
         },
     ],
 });
+// moongse schema must be written before creating models
+customerSchema.pre("findOneAndDelete", async () => {
+    console.log("Pre Middleware");
+});
+customerSchema.post("findOneAndDelete", async () => {
+    console.log("Post Middleware");
+});
 
 
 const Order = mongoose.model("Order", orderSchema);
@@ -85,10 +92,11 @@ const addCustomer = async () => {
 
     console.log("New Data Added successfully");
 }
+
 // addCustomer();
 
 const delCust = async () => {
-    let data = await Customer.findByIdAndDelete('668d2b65444d2783bcf539e5');
+    let data = await Customer.findOneAndDelete({ _id: '668d42b7cb64d795fe422cd0' });
     console.log(data);
 };
 
