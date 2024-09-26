@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const { boolean } = require('zod');
 
-const todoSchema = mongoose.Schema({
+
+const todoSchema = new mongoose.Schema({
     title: String,
     description: String,
     isCompleted: {
