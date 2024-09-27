@@ -3,8 +3,16 @@ require('dotenv').config();
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const rateLimit = require('express-rate-limit'); // rate limiter
 const todoRouter = require('./routes/todo.js'); // todo routes
 const notificationRouter = require('./routes/notification.js'); // notification routes
+
+// Define rate limit
+const limiter = rateLimit({
+    windowMs: 1000, // 1 second
+    max: 5, // limit each IP to 5 requests per windowMs
+    message: 'Too many requests, please wait and try again.',
+});
 
 app.use(bodyParser.json());
 app.use('/todos', todoRouter);
