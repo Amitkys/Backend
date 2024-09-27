@@ -14,6 +14,7 @@ const limiter = rateLimit({
     message: 'Too many requests, please wait and try again.',
 });
 
+// middleware
 app.use(limiter);
 app.use(bodyParser.json());
 app.use('/todos', todoRouter);
