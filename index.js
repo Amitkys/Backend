@@ -10,7 +10,7 @@ const notificationRouter = require('./routes/notification.js'); // notification 
 // Define rate limit
 const limiter = rateLimit({
     windowMs: 1000, // 1 second
-    max: 3, // limit each IP to 3 requests per windowMs
+    max: 4, // limit each IP to 3 requests per windowMs
     message: 'Too many requests, please wait and try again.',
 });
 
