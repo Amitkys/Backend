@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const rateLimit = require('express-rate-limit'); // rate limiter
 const todoRouter = require('./routes/todo.js'); // todo routes
+const cors = require('cors');
 const notificationRouter = require('./routes/notification.js'); // notification routes
 
 // Define rate limit
@@ -16,6 +17,7 @@ const limiter = rateLimit({
 
 // middleware
 app.use(limiter);
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/todos', todoRouter);
 app.use('/notification', notificationRouter);
